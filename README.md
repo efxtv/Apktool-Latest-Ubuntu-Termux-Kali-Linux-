@@ -20,3 +20,14 @@ wget https://raw.githubusercontent.com/rendiix/rendiix.github.io/master/install-
 pkg update;pkg upgrade
 pkg install zipalign 
 </code></pre>
+
+Fix outdated nodejs error <a href="https://heynode.com/tutorial/install-nodejs-locally-nvm/" target="_blank">Source</a>
+<pre><code>
+curl -sL https://raw.githubusercontent.com/nvm-sh/nvm/v0.35.0/install.sh -o install_nvm.sh
+bash install_nvm.sh
+
+export NVM_DIR="$HOME/.nvm"
+  [ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"
+  [ -s "$NVM_DIR/bash_completion" ] && \. "$NVM_DIR/bash_completion"
+nvm install node
+</code></pre>
