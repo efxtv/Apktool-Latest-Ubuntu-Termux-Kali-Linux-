@@ -15,6 +15,8 @@ Apktool chroot, Kali Linux, Ubuntu, etc
 Apktool Termux Snapshot
 <pre><code> source <(curl -fsSL https://raw.githubusercontent.com/efxtv/npm/main/apktool/apktool-termux.sh) </code></pre>
 
+Apktool official
+<pre><code> source <(curl -fsSL https://raw.githubusercontent.com/efxtv/Ubuntu-termux-and-NPM/main/apktool/apktool-termux-official.sh) </code> </pre>
 
 Fix outdated nodejs error <a href="https://heynode.com/tutorial/install-nodejs-locally-nvm/" target="_blank">Source</a>
 <pre><code> source <(curl -fsSL https://raw.githubusercontent.com/efxtv/npm/main/apktool/nodejs-update.sh) </code></pre>
