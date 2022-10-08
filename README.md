@@ -12,7 +12,7 @@ Tutorial
 Apktool chroot, Kali Linux, Ubuntu, etc
 <pre><code> source <(curl -fsSL https://raw.githubusercontent.com/efxtv/npm/main/apktool/apktool-kali-ubuntu.sh) </code></pre>
 
-Apktool Termux
+Apktool Termux Snapshot
 <pre><code> source <(curl -fsSL https://raw.githubusercontent.com/efxtv/npm/main/apktool/apktool-termux.sh) </code></pre>
 
 
