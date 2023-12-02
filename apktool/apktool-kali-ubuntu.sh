@@ -1,5 +1,6 @@
 #!/bin/bash
-curl -L -o $PWD/https://raw.githubusercontent.com/iBotPeaches/Apktool/master/scripts/linux/apktool --progress-bar
-curl -L -o $PWD/apktool.jar https://bitbucket.org/iBotPeaches/apktool/downloads/apktool_2.9.0.jar --progress-bar
-sudo chmod +x apktool*  
-sudo mv apktool* /usr/bin/
+sudo rm /usr/bin/apktool* 1>/dev/null
+sudo wget https://raw.githubusercontent.com/iBotPeaches/Apktool/master/scripts/linux/apktool -O /usr/bin/apktool -q --show-progress
+sudo wget https://bitbucket.org/iBotPeaches/apktool/downloads/apktool_2.9.0.jar -O /usr/bin/apktool.jar -q --show-progress
+sudo chmod +x /usr/bin/apktool*
+
