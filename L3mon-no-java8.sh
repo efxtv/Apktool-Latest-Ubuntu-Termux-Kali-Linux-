@@ -1,5 +1,6 @@
 #!/bin/bash
 # Script by EFXTv t.me/efxtf
+# It will build apk
 # -----------------------------
 # ENV DETECTION
 # -----------------------------
@@ -74,19 +75,17 @@ check_dep() {
 install_deps() {
     echo "[OK] Installing dependencies for $ENV"
 
-    # APKTOOL (manual install for both)
-    wget https://github.com/iBotPeaches/Apktool/releases/download/v2.9.3/apktool_2.9.3.jar
-    wget https://raw.githubusercontent.com/iBotPeaches/Apktool/master/scripts/linux/apktool
-    chmod +x apktool
-    mv apktool "$BIN_DIR/"
-    mv apktool_2.9.3.jar "$BIN_DIR/apktool.jar"
-
     if [ "$ENV" = "TERMUX" ]; then
         pkg update
-        pkg install -y openjdk-17 aapt aapt2
+        pkg install -y openjdk-17 aapt aapt2 apktool
     else
         sudo apt update
         sudo apt install -y openjdk-8-jdk aapt aapt2
+        sudo rm /usr/bin/apktool* 1>/dev/null
+        sudo rm /usr/local/bin/apktool* 1>/dev/null
+        sudo wget https://raw.githubusercontent.com/iBotPeaches/Apktool/master/scripts/linux/apktool -O /usr/local/bin/apktool -q --show-progress
+        sudo wget https://github.com/iBotPeaches/Apktool/releases/download/v2.9.3/apktool_2.9.3.jar -O /usr/local/bin/apktool.jar -q --show-progress
+        sudo chmod +x /usr/local/bin/apktool*
     fi
 }
 
