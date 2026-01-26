@@ -1,27 +1,43 @@
-#!/bin/bash
-Black='\033[0;30m'
-Red='\033[0;31m'
-Green='\033[0;32m'
-IGreen='\033[0;92m'
-Yellow='\033[0;33m'
-IYellow='\033[0;93m'
-Blue='\033[0;34m'
-Purple='\033[0;35m'
-Cyan='\033[0;36m'
-White='\033[0;37m'
-clear='\033[0m'
+#!/usr/bin/env bash
+set -e
 
-ctermuxorlinux=$(which bash|grep -o termux)
-if [ "$ctermuxorlinux" == "termux" ]; then
-echo -e "\t${IGreen} ${clear} ${Green}Termux Found...${clear}"
-rm $PREFIX/bin/apktool* 1>/dev/null
-wget https://raw.githubusercontent.com/iBotPeaches/Apktool/master/scripts/linux/apktool -O $PREFIX/bin/apktool -q --show-progress
-wget https://bitbucket.org/iBotPeaches/apktool/downloads/apktool_2.9.0.jar -O $PREFIX/bin/apktool.jar -q --show-progress
-chmod +x $PREFIX/bin/apktool*
-else
-echo -e "\t${IGreen} ${clear} ${Green}OS with Root found...${clear}"
-sudo rm /usr/bin/apktool* 1>/dev/null
-sudo wget https://raw.githubusercontent.com/iBotPeaches/Apktool/master/scripts/linux/apktool -O /usr/bin/apktool -q --show-progress
-sudo wget https://github.com/iBotPeaches/Apktool/releases/download/v2.9.3/apktool_2.9.3.jar -O /usr/bin/apktool.jar -q --show-progress
-sudo chmod +x /usr/bin/apktool*
-fi 
+echo "[+] Detecting environment..."
+
+# Detect Termux
+if [ -n "$TERMUX_VERSION" ] || [[ "$PREFIX" == *"com.termux"* ]]; then
+    echo "[+] Termux detected"
+    echo "[+] Installing apktool"
+    sleep 3
+    apt update -y
+    apt install apktool -y
+    echo "[+] Apktool installed on Termux"
+    exit 0
+fi
+
+# Detect Linux (Kali / Ubuntu / Debian / etc.)
+if [ "$(uname -s)" = "Linux" ]; then
+    echo "[+] Linux detected (Kali / Ubuntu / Debian)"
+
+    echo "[+] Removing old apktool binaries..."
+    sudo rm -f /usr/bin/apktool*
+    sudo rm -f /usr/local/bin/apktool*
+
+    echo "[+] Downloading apktool wrapper..."
+    sudo wget -q --show-progress \
+        https://raw.githubusercontent.com/iBotPeaches/Apktool/master/scripts/linux/apktool \
+        -O /usr/local/bin/apktool
+
+    echo "[+] Downloading apktool jar..."
+    sudo wget -q --show-progress \
+        https://github.com/iBotPeaches/Apktool/releases/download/v2.9.3/apktool_2.9.3.jar \
+        -O /usr/local/bin/apktool.jar
+
+    echo "[+] Setting permissions..."
+    sudo chmod +x /usr/local/bin/apktool /usr/local/bin/apktool.jar
+
+    echo "[+] Apktool installed successfully"
+    exit 0
+fi
+
+echo "[E] Unsupported OS"
+exit 1
