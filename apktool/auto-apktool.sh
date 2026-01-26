@@ -40,4 +40,4 @@ if [ "$(uname -s)" = "Linux" ]; then
 fi
 
 echo "[E] Unsupported OS"
-exit 1
+exit 0
